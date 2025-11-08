@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Stock - Craftsmanship in Transport Engineering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* ---
+        Color Palette & Base Styles
+        Based on AJ Stock logo (Black & Yellow/Gold)
+        --- */
+        :root {
+            --brand-yellow: #fca500; /* Primary brand yellow */
+            --brand-black: #222222;  /* Primary brand black */
+            --brand-white: #ffffff;
+            --brand-light-gray: #f2f2f2;
+            --brand-dark-gray: #333333;
+            --text-color: #555555;
+            --light-text: #cccccc;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden; 
+            background-color: var(--brand-white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--brand-black);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--brand-yellow);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-yellow);
+            color: var(--brand-black);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover {
+            background-color: #e09000;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--brand-black);
+            color: var(--brand-white);
+            border: 2px solid var(--brand-black);
+        }
+        .btn-secondary:hover {
+            background-color: var(--brand-dark-gray);
+            border-color: var(--brand-dark-gray);
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden; /* For animations */
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+        }
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: var(--brand-yellow);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-color);
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+
+        /* ---
+        Top Bar 
+        --- */
+        .top-bar {
+            background-color: var(--brand-black);
+            color: var(--light-text);
+            padding: 10px 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #333;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .top-bar-left span, .top-bar-right span {
+            margin-right: 20px;
+        }
+        .top-bar-left i, .top-bar-right i {
+            color: var(--brand-yellow);
+            margin-right: 8px;
+        }
+        .social-icons a {
+            color: var(--light-text);
+            margin-left: 15px;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--brand-yellow);
+        }
+
+        /* ---
+        Main Navigation
+        --- */
+        .navbar {
+            background: var(--brand-white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: var(--brand-black);
+        }
+        .navbar-logo span {
+            color: var(--brand-yellow);
+        }
+        .navbar-nav {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar-nav li {
+            margin-left: 35px;
+        }
+        .navbar-nav a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--brand-black);
+            text-decoration: none;
+            font-size: 1rem;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav a:hover,
+        .navbar-nav a.active {
+            color: var(--brand-yellow);
+        }
+        .navbar-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 3px;
+            background: var(--brand-yellow);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        .navbar-nav a:hover::after,
+        .navbar-nav a.active::after {
+            width: 100%;
+        }
+        .nav-contact-btn {
+            margin-left: 40px;
+        }
+        .nav-contact-btn .btn {
+            padding: 10px 25px;
+            font-size: 0.9rem;
+        }
+
+        /* ---
+        Hero Section (Redesigned)
+        --- */
+        .hero {
+            height: 90vh;
+            /* Replace this placeholder with your own hero image */
+            background: url('https://via.placeholder.com/1920x1080/444/888?text=AJ+Stock+Truck+Hero') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--brand-white);
+            text-align: left;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .hero-content p:first-of-type {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--brand-yellow);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--brand-white);
+            line-height: 1.1;
+            margin: 0 0 20px;
+        }
+        .hero-content p:last-of-type {
+            font-size: 1.2rem;
+            margin: 0 0 40px;
+            color: #f0f0f0;
+        }
+        .hero-content .btn {
+            margin-right: 20px;
+        }
+
+        /* ---
+        Why Choose Us Section (Redesigned)
+        --- */
+        .why-choose-us {
+            background-color: var(--brand-light-gray);
+        }
+        .why-choose-us .section-title p {
+            color: var(--text-color);
+        }
+        .why-choose-us-item {
+            background: var(--brand-white);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-bottom-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid transparent;
+        }
+        .why-choose-us-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-bottom-color: var(--brand-yellow);
+        }
+        .why-choose-us-item i {
+            font-size: 3.5rem;
+            color: var(--brand-yellow);
+            margin-bottom: 25px;
+            display: block;
+        }
+        .why-choose-us-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .why-choose-us-item p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        /* ---
+        We Are Best At Section (Redesigned)
+        --- */
+        .we-are-best-at {
+            background: var(--brand-white);
+        }
+        .we-are-best-at .section-title p {
+            color: var(--text-color);
+        }
+        .best-at-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        .best-at-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            max-width: 45%;
+            min-width: 300px;
+        }
+        .best-at-item i {
+            font-size: 2.5rem;
+            color: var(--brand-yellow);
+            margin-right: 20px;
+            flex-shrink: 0;
+            position: relative;
+            top: 5px;
+        }
+        .best-at-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        .best-at-item p {
+            font-size: 0.95rem;
+        }
+        .best-at-image {
+            flex-shrink: 0;
+            padding: 0 30px;
+        }
+        .best-at-image img {
+            max-width: 350px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Adjust items around the image for smaller screens */
+        @media (max-width: 992px) {
+            .best-at-grid {
+                flex-direction: column;
+            }
+            .best-at-item {
+                max-width: 100%;
+            }
+            .best-at-image {
+                order: -1; /* Move image to top on small screens */
+                margin-bottom: 40px;
+            }
+        }
+
+
+        /* ---
+        Get a Quote Section (Redesigned)
+        --- */
+        .get-a-quote-section {
+            /* Replace this placeholder with your own workshop image */
+            background: url('https://via.placeholder.com/1920x800/222/555?text=Workshop+Background') no-repeat center center/cover;
+            padding: 100px 0;
+            color: var(--brand-white);
+            position: relative;
+        }
+        .get-a-quote-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 1;
+        }
+        .get-a-quote-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+        .quote-form-wrapper {
+            flex: 2;
+            min-width: 350px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 3px solid var(--brand-yellow);
+        }
+        .quote-form-wrapper h2 {
+            color: var(--brand-white);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .quote-form-wrapper p {
+            color: var(--light-text);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        .quote-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .quote-form input, .quote-form textarea, .quote-form select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            background-color: rgba(0,0,0,0.4);
+            color: var(--brand-white);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box; /* Added for correct padding */
+        }
+        .quote-form input::placeholder, .quote-form textarea::placeholder {
+            color: #aaa;
+        }
+        .quote-form textarea {
+            grid-column: 1 / -1;
+            min-height: 120px;
+            resize: vertical;
+        }
+        .quote-form .btn {
+            grid-column: 1 / -1;
+            width: auto;
+            justify-self: start;
+            margin-top: 10px;
+        }
+        .quote-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 300px;
+        }
+        .quote-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* ---
+        Transport Features / Stats Section (Redesigned)
+        --- */
+        .transport-features-section {
+            background-color: var(--brand-black);
+            color: var(--brand-white);
+            padding: 80px 0 100px;
+            text-align: center;
+        }
+        .transport-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+        .stat-item {
+            margin: 20px;
+            text-align: center;
+        }
+        .stat-item i {
+            font-size: 3.5rem;
+            color: var(--brand-yellow);
+            margin-bottom: 15px;
+        }
+        .stat-item .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            color: var(--brand-white);
+            line-height: 1;
+        }
+        .stat-item p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            margin-top: 10px;
+        }
+        .transport-features-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            margin-top: 60px;
+        }
+        .features-image {
+            flex: 1.2;
+            min-width: 350px;
+        }
+        .features-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .features-list {
+            flex: 1;
+            min-width: 350px;
+            text-align: left;
+        }
+        .features-list h2 {
+            color: var(--brand-white);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .features-list h2::after {
+            margin: 10px 0 0;
+        }
+        .features-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            color: var(--light-text);
+            font-size: 1rem;
+        }
+        .features-list li i {
+            color: var(--brand-yellow);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+        .features-list li div {
+            flex-grow: 1;
+        }
+        .features-list li h3 {
+            color: var(--brand-white);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .features-list li p {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+
+        /* ---
+        Our Clients Section (Redesigned)
+        --- */
+        .our-clients {
+            background-color: var(--brand-light-gray);
+            text-align: center;
+        }
+        .client-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .client-logo-item {
+            padding: 20px;
+            background: var(--brand-white);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .client-logo-item:hover {
+            transform: translateY(-5px);
+        }
+        .client-logo-item img {
+            max-width: 120px;
+            height: auto;
+            filter: grayscale(100%); /* Make logos grayscale */
+            opacity: 0.6;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+        .client-logo-item:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* ---
+        Clients Say / Testimonials Section (Redesigned)
+        --- */
+        .testimonials-section {
+            background: var(--brand-black);
+            padding: 100px 0;
+            color: var(--brand-white);
+            text-align: center;
+            position: relative;
+        }
+        .testimonials-section .section-title h2 {
+            color: var(--brand-white);
+        }
+        .testimonials-section .section-title p {
+            color: var(--light-text);
+        }
+        .testimonial-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .testimonial-item {
+            padding: 0 60px; /* Space for arrows */
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.5s ease;
+            position: absolute; /* Stack items for carousel */
+            width: 100%;
+            top: 0;
+            left: 0;
+            visibility: hidden; /* Hide for accessibility */
+            box-sizing: border-box; /* Added for correct padding */
+        }
+        .testimonial-item.active {
+            opacity: 1;
+            position: relative;
+            visibility: visible;
+        }
+        .testimonial-item i.fas.fa-quote-left {
+            font-size: 3rem;
+            color: var(--brand-yellow);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .testimonial-item p {
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--light-text);
+        }
+        .testimonial-item .author {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--brand-yellow);
+            margin-bottom: 5px;
+        }
+        .testimonial-item .author-title {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--brand-white);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .carousel-arrow.left { left: 0; }
+        .carousel-arrow.right { right: 0; }
+
+
+        /* ---
+        Blog Feed Section (Redesigned)
+        --- */
+        .blog-feed-section {
+            background-color: var(--brand-light-gray);
+        }
+        .blog-post-card {
+            background: var(--brand-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%; /* Ensure cards are same height */
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+        .blog-post-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden; /* Clip image on zoom */
+        }
+        .blog-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .blog-post-card:hover img {
+            transform: scale(1.05);
+        }
+        .blog-card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .blog-card-content .meta {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        .blog-card-content .meta i {
+            margin-right: 5px;
+            color: var(--brand-yellow);
+        }
+        .blog-card-content p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            flex-grow: 1; /* Allow p to grow */
+        }
+        .blog-card-content .read-more {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--brand-yellow);
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: auto; /* Push to bottom */
+        }
+        .blog-card-content .read-more i {
+            margin-left: 5px;
+            transition: margin-left 0.3s ease;
+        }
+        .blog-card-content .read-more:hover i {
+            margin-left: 10px;
+        }
+
+        /* ---
+        Footer
+        (Redesigned to match branding)
+        --- */
+        .footer {
+            background: var(--brand-black);
+            color: var(--light-text);
+            padding-top: 80px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #333;
+        }
+        .footer-col h4 {
+            color: var(--brand-white);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h4::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--brand-yellow);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        .footer-col p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+        .footer-col li a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s, padding-left 0.3s;
+            position: relative;
+            padding-left: 20px;
+            display: inline-block;
+        }
+        .footer-col li a::before {
+            content: '\f0da'; /* Font Awesome angle-right icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--brand-yellow);
+            transition: left 0.3s ease;
+        }
+        .footer-col li a:hover {
+            color: var(--brand-yellow);
+            padding-left: 25px;
+        }
+        .footer-col li a:hover::before {
+             left: 5px;
+        }
+        .footer-col .contact-info {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-col .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            padding-left: 0;
+        }
+        .footer-col .contact-info i {
+            width: 25px;
+            color: var(--brand-yellow);
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+        .footer-bottom {
+            background: #111;
+            padding: 25px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .footer-bottom p {
+            margin: 0;
+        }
+        .footer-bottom a {
+            color: var(--brand-yellow);
+            text-decoration: none;
+        }
+
+
+        /* ======== Animation Styles ======== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        
+        .animate-on-scroll.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Hero Content animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-content p:first-of-type {
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+        .hero-content h1 {
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+        .hero-content p:last-of-type {
+            animation: fadeInUp 0.8s ease-out 0.7s forwards;
+            opacity: 0;
+        }
+        .hero-content .btn-primary {
+            animation: fadeInUp 0.8s ease-out 0.9s forwards;
+            opacity: 0;
+        }
+        .hero-content .btn-secondary {
+            animation: fadeInUp 0.8s ease-out 1.1s forwards;
+            opacity: 0;
+        }
+
+        /* Stagger grid items */
+        .grid-3 .animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+        .grid-3 .animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+        .grid-4 .animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+        .grid-4 .animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+        .grid-4 .animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+        
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> (08) 8723 1111</span>
+                <span><i class="fas fa-envelope"></i> enquiries@ajstock.com.au</span>
+            </div>
+            <div class="top-bar-right">
+                <span><i class="fas fa-map-marker-alt"></i> 15-21 Sturt Street, Mount Gambier, SA 5290</span>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="navbar-logo">AJ<span>Stock</span></a>
+            <ul class="navbar-nav">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-contact-btn">
+                <a href="#" class="btn btn-primary">Get a Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <p>Since 1896</p>
+                <h1>Craftsmanship in Transport Engineering</h1>
+                <p>We build high-quality, custom truck bodies, trays, and tippers designed to last.</p>
+                <a href="#" class="btn btn-primary">View Our Products</a>
+                <a href="#" class="btn btn-secondary">About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Why Choose AJ Stock?</h2>
+                <p>With over a century of experience, we deliver uncompromising quality and durability in every build.</p>
+            </div>
+            <div class="grid-3">
+                <div class="why-choose-us-item animate-on-scroll">
+                    <i class="fas fa-award"></i>
+                    <h3>Unmatched Quality</h3>
+                    <p>We use premium materials and industry-best techniques to build products that withstand the toughest conditions.</p>
+                </div>
+                <div class="why-choose-us-item animate-on-scroll">
+                    <i class="fas fa-drafting-compass"></i>
+                    <h3>Custom Solutions</h3>
+                    <p>From initial design to final fit-out, we work with you to create a custom body that meets your exact needs.</p>
+                </div>
+                <div class="why-choose-us-item animate-on-scroll">
+                    <i class="fas fa-history"></i>
+                    <h3>Generations of Experience</h3>
+                    <p>Since 1896, our family-owned business has set the standard for transport engineering in Australia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="we-are-best-at">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>What We're Best At</h2>
+                <p>Our core services are built on precision, strength, and a deep understanding of our clients' needs.</p>
+            </div>
+            <div class="best-at-grid">
+                <div class="best-at-item animate-on-scroll">
+                    <i class="fas fa-truck-pickup"></i>
+                    <div>
+                        <h3>Custom Built Trays</h3>
+                        <p>Durable and reliable steel and aluminium trays built to your exact specifications.</p>
+                    </div>
+                </div>
+                <div class="best-at-item animate-on-scroll">
+                    <i class="fas fa-truck-moving"></i>
+                    <div>
+                        <h3>Tippers</h3>
+                        <p>Heavy-duty tipper bodies designed for performance and longevity in tough conditions.</p>
+                    </div>
+                </div>
+                <div class="best-at-image animate-on-scroll">
+                    <img src="https://via.placeholder.com/350x450/ccc/888?text=AJ+Stock+Workshop" alt="AJ Stock Workshop">
+                </div>
+                <div class="best-at-item animate-on-scroll">
+                    <i class="fas fa-truck"></i>
+                    <div>
+                        <h3>Specialised Bodies</h3>
+                        <p>From service bodies to crane trucks, we engineer solutions for any application.</p>
+                    </div>
+                </div>
+                <div class="best-at-item animate-on-scroll">
+                    <i class="fas fa-tools"></i>
+                    <div>
+                        <h3>Repairs & Modifications</h3>
+                        <p>Complete after-sales support, repairs, and modifications to keep you on the road.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="get-a-quote-section">
+        <div class="get-a-quote-overlay"></div>
+        <div class="container">
+            <div class="get-a-quote-content">
+                <div class="quote-form-wrapper animate-on-scroll">
+                    <h2>Get a Free Quote</h2>
+                    <p>Tell us about your project and our team will get back to you.</p>
+                    <form class="quote-form">
+                        <input type="text" placeholder="Your Name*" required>
+                        <input type="email" placeholder="Your Email*" required>
+                        <input type="tel" placeholder="Your Phone">
+                        <select>
+                            <option value="">Select Service*</option>
+                            <option value="tray">Custom Tray</option>
+                            <option value="tipper">Tipper Body</option>
+                            <option value="specialised">Specialised Body</option>
+                            <option value="repair">Repair/Modification</option>
+                        </select>
+                        <textarea placeholder="Tell us about your project..."></textarea>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </form>
+                </div>
+                <div class="quote-image animate-on-scroll">
+                    <img src="https://via.placeholder.com/400x500/ccc/888?text=Custom+Tipper" alt="Custom Tipper Truck">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="transport-features-section">
+        <div class="container">
+            <div class="transport-stats">
+                <div class="stat-item animate-on-scroll">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span class="number">125+</span>
+                    <p>Years in Business</p>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <i class="fas fa-users"></i>
+                    <span class="number">5000+</span>
+                    <p>Satisfied Clients</p>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <i class="fas fa-hard-hat"></i>
+                    <span class="number">40+</span>
+                    <p>Skilled Experts</p>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <i class="fas fa-truck-monster"></i>
+                    <span class="number">100%</span>
+                    <p>Australian Made</p>
+                </div>
+            </div>
+            <div class="transport-features-content">
+                <div class="features-image animate-on-scroll">
+                    <img src="https://via.placeholder.com/600x400/ccc/888?text=Our+Workshop" alt="Our Workshop">
+                </div>
+                <div class="features-list animate-on-scroll">
+                    <h2>Our Commitment</h2>
+                    <ul>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>Built for Australian Conditions</h3>
+                                <p>We understand the demands of the Australian climate and terrain.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>End-to-End Service</h3>
+                                <p>From 3D design and engineering to manufacturing and fitment.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>Nationwide Support</h3>
+                                <p>We deliver high-quality bodies to clients all across Australia.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="our-clients">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Trusted By</h2>
+                <p>We are proud to work with industry leaders across Australia.</p>
+            </div>
+            <div class="client-logos">
+                <div class="client-logo-item animate-on-scroll"><img src="https://via.placeholder.com/120x60/ccc/888?text=Client+1" alt="Client 1"></div>
+                <div class="client-logo-item animate-on-scroll"><img src="https://via.placeholder.com/120x60/ccc/888?text=Client+2" alt="Client 2"></div>
+                <div class="client-logo-item animate-on-scroll"><img src="https://via.placeholder.com/120x60/ccc/888?text=Client+3" alt="Client 3"></div>
+                <div class="client-logo-item animate-on-scroll"><img src="https://via.placeholder.com/120x60/ccc/888?text=Client+4" alt="Client 4"></div>
+                <div class="client-logo-item animate-on-scroll"><img src="https://via.placeholder.com/120x60/ccc/888?text=Client+5" alt="Client 5"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>What Our Clients Say</h2>
+                <p>Real feedback from the people we work with.</p>
+            </div>
+            <div class="testimonial-carousel animate-on-scroll">
+                <div class="testimonial-item active">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"The quality of the tipper body from AJ Stock is second to none. It's taken everything we've thrown at it and hasn't missed a beat. Their team was fantastic to deal with."</p>
+                    <div class="author">John Smith</div>
+                    <div class="author-title">Director, Smith Construction</div>
+                </div>
+                <div class="testimonial-item">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"We needed a fully custom service body for our field technicians. AJ Stock designed and built the perfect solution, improving our efficiency and safety on site."</p>
+                    <div class="author">Jane Doe</div>
+                    <div class="author-title">Fleet Manager, Resources Co.</div>
+                </div>
+                <div class="testimonial-item">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"From the initial quote to the final delivery, the professionalism was outstanding. The aluminium tray is lightweight but incredibly strong. Highly recommended."</p>
+                    <div class="author">Mike Williams</div>
+                    <div class="author-title">Owner, Williams Electrical</div>
+                </div>
+                
+                <button class="carousel-arrow left" onclick="changeTestimonial(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" onclick="changeTestimonial(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-feed-section">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Our Latest News</h2>
+                <p>See our latest projects, news, and insights from the workshop.</p>
+            </div>
+            <div class="grid-3">
+                <div class="blog-post-card animate-on-scroll">
+                    <div class="blog-post-image">
+                        <img src="https://via.placeholder.com/400x250/ccc/888?text=Project+1" alt="Blog Post 1">
+                    </div>
+                    <div class="blog-card-content">
+                        <div>
+                            <div class="meta"><i class="fas fa-calendar-alt"></i> Oct 28, 2025</div>
+                            <h3>Project Spotlight: Heavy-Duty Tipper for Mining</h3>
+                            <p>See the full build process for a fleet of custom tippers designed for one of Australia's largest mining operations.</p>
+                        </div>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-post-card animate-on-scroll">
+                    <div class="blog-post-image">
+                        <img src="https://via.placeholder.com/400x250/ccc/888?text=Workshop+News" alt="Blog Post 2">
+                    </div>
+                    <div class="blog-card-content">
+                        <div>
+                            <div class="meta"><i class="fas fa-calendar-alt"></i> Oct 15, 2025</div>
+                            <h3>Workshop Upgrade: New CNC Plasma Cutter</h3>
+                            <p>We've invested in new technology to increase our precision, capability, and turnaround times for complex builds.</p>
+                        </div>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-post-card animate-on-scroll">
+                    <div class="blog-post-image">
+                        <img src="https://via.placeholder.com/400x250/ccc/888?text=Truck+Maintenance" alt="Blog Post 3">
+                    </div>
+                    <div class="blog-card-content">
+                        <div>
+                            <div class="meta"><i class="fas fa-calendar-alt"></i> Oct 02, 2025</div>
+                            <h3>5 Maintenance Tips for Your Tipper Body</h3>
+                            <p>Learn how to keep your tipper in peak condition and extend its service life with these simple tips from our experts.</p>
+                        </div>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About AJ Stock</h4>
+                    <p>AJ Stock is Australia's trusted name in transport engineering since 1896. We specialise in custom-built trays, tippers, and specialised bodies, all manufactured to the highest standards of quality.</p>
+                    <div class="social-icons" style="margin-top: 20px;">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Our Products</h4>
+                    <ul>
+                        <li><a href="#">Custom Built Trays</a></li>
+                        <li><a href="#">Tippers</a></li>
+                        <li><a href="#">Specialised Bodies</a></li>
+                        <li><a href="#">Vehicle Fitouts</a></li>
+                        <li><a href="#">Repairs & Modifications</a></li>
+                        <li><a href="#">Spare Parts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Blog / News</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Get a Quote</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 15-21 Sturt Street, Mount Gambier, SA 5290</li>
+                        <li><i class="fas fa-phone-alt"></i> (08) 8723 1111</li>
+                        <li><i class="fas fa-envelope"></i> enquiries@ajstock.com.au</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8:00am - 5:00pm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AJ Stock. All Rights Reserved. Designed with <a href="#">Your Designer</a>.</p>
+        </div>
+    </footer>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- 1. On-Scroll Animation Observer ---
+        const observerOptions = {
+            root: null, // relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of the item must be visible
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+        elementsToAnimate.forEach(el => observer.observe(el));
+
+        
+        // --- 2. Testimonial Carousel ---
+        // This is a simple, no-library carousel
+        const testimonials = document.querySelectorAll('.testimonial-item');
+        let currentTestimonial = 0;
+        
+        if (testimonials.length > 0) {
+            // Set initial state
+            testimonials[0].classList.add('active');
+        }
+
+        window.changeTestimonial = (direction) => {
+            // Hide current
+            testimonials[currentTestimonial].classList.remove('active');
+            
+            // Calculate next
+            currentTestimonial += direction;
+            
+            // Loop back
+            if (currentTestimonial < 0) {
+                currentTestimonial = testimonials.length - 1;
+            } else if (currentTestimonial >= testimonials.length) {
+                currentTestimonial = 0;
+            }
+            
+            // Show next
+            testimonials[currentTestimonial].classList.add('active');
+        };
+    });
+    </script>
+
+</body>
+</html>
