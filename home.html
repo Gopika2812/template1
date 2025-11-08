@@ -189,6 +189,7 @@
             font-weight: 800;
             font-size: 2.2rem;
             color: var(--brand-black);
+            z-index: 1002; /* Ensure logo is above mobile overlay */
         }
         .navbar-logo span {
             color: var(--brand-yellow);
@@ -378,21 +379,6 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        /* Adjust items around the image for smaller screens */
-        @media (max-width: 992px) {
-            .best-at-grid {
-                flex-direction: column;
-            }
-            .best-at-item {
-                max-width: 100%;
-            }
-            .best-at-image {
-                order: -1; /* Move image to top on small screens */
-                margin-bottom: 40px;
-            }
-        }
-
-
         /* ---
         Get a Quote Section (Redesigned)
         --- */
@@ -581,7 +567,6 @@
             color: #b0b0b0;
         }
 
-
         /* ---
         Our Clients Section (Redesigned)
         --- */
@@ -699,7 +684,6 @@
         }
         .carousel-arrow.left { left: 0; }
         .carousel-arrow.right { right: 0; }
-
 
         /* ---
         Blog Feed Section (Redesigned)
@@ -877,6 +861,64 @@
             text-decoration: none;
         }
 
+        /* ---
+        Mobile Menu (NEW)
+        --- */
+        .menu-toggle {
+            display: none; /* Hidden by default */
+            font-size: 1.5rem;
+            color: var(--brand-black);
+            cursor: pointer;
+            z-index: 1002;
+        }
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: -100%; /* Start off-screen */
+            width: 100%;
+            height: 100vh;
+            background: var(--brand-black);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: left 0.3s ease-in-out;
+        }
+        .mobile-nav-overlay.active {
+            left: 0;
+        }
+        .mobile-nav-overlay ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        .mobile-nav-overlay li {
+            margin: 20px 0;
+        }
+        .mobile-nav-overlay a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--brand-white);
+            text-decoration: none;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .mobile-nav-overlay a:hover {
+            color: var(--brand-yellow);
+        }
+        .mobile-nav-overlay .btn {
+            margin-top: 30px;
+        }
+        .menu-toggle .fa-times { /* Close icon */
+            display: none;
+            color: var(--brand-white);
+        }
+        .menu-toggle.active .fa-bars { display: none; }
+        .menu-toggle.active .fa-times { display: block; }
+
 
         /* ======== Animation Styles ======== */
         .animate-on-scroll {
@@ -929,6 +971,111 @@
         .grid-4 .animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
         .grid-4 .animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
         
+        
+        /* ---
+        Responsive Media Queries (NEW)
+        --- */
+
+        /* Tablet & Laptop (Hide desktop nav) */
+        @media (max-width: 992px) {
+            .navbar-nav,
+            .nav-contact-btn {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .best-at-grid {
+                flex-direction: column;
+            }
+            .best-at-item {
+                max-width: 100%;
+            }
+            .best-at-image {
+                order: -1; /* Move image to top */
+                margin-bottom: 40px;
+            }
+        }
+
+        /* Mobile (Stacking and font sizes) */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .top-bar .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .top-bar-left, .top-bar-right {
+                margin-bottom: 5px;
+            }
+            .social-icons {
+                margin-top: 10px;
+            }
+
+            .navbar-logo {
+                font-size: 1.8rem;
+            }
+
+            .hero {
+                text-align: center;
+                height: 80vh;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content p:first-of-type {
+                font-size: 1.1rem;
+            }
+            .hero-content p:last-of-type {
+                font-size: 1rem;
+            }
+            .hero-content .btn {
+                display: block;
+                margin: 15px auto 0;
+                width: 80%;
+                box-sizing: border-box; /* Fix padding issue */
+            }
+            .hero-content .btn-secondary {
+                margin-right: auto;
+            }
+
+            .quote-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-item .number {
+                font-size: 2.8rem;
+            }
+            .features-list {
+                text-align: center;
+            }
+            .features-list h2::after {
+                margin: 10px auto 0;
+            }
+            
+            .testimonial-item {
+                padding: 0 10px;
+            }
+            .carousel-arrow {
+                display: none; /* Hide arrows on mobile, users can swipe (if JS library is added) */
+            }
+
+            .footer-grid {
+                text-align: center;
+            }
+            .footer-col h4::after {
+                margin: 10px auto 0;
+            }
+            .footer-col .contact-info li {
+                justify-content: center;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -952,6 +1099,7 @@
     <nav class="navbar">
         <div class="container">
             <a href="#" class="navbar-logo">AJ<span>Stock</span></a>
+            
             <ul class="navbar-nav">
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
@@ -964,8 +1112,27 @@
             <div class="nav-contact-btn">
                 <a href="#" class="btn btn-primary">Get a Quote</a>
             </div>
+
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </div>
         </div>
     </nav>
+
+    <div class="mobile-nav-overlay">
+        <ul>
+            <li><a href="#" class="mobile-nav-link">Home</a></li>
+            <li><a href="#" class="mobile-nav-link">About</a></li>
+            <li><a href="#" class="mobile-nav-link">Products</a></li>
+            <li><a href="#" class="mobile-nav-link">Services</a></li>
+            <li><a href="#" class="mobile-nav-link">Gallery</a></li>
+            <li><a href="#" class="mobile-nav-link">Blog</a></li>
+            <li><a href="#" class="mobile-nav-link">Contact</a></li>
+            <li><a href="#" class="btn btn-primary mobile-nav-link">Get a Quote</a></li>
+        </ul>
+    </div>
+
 
     <section class="hero">
         <div class="hero-overlay"></div>
@@ -1283,7 +1450,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 AJ Stock. All Rights Reserved. Designed with <a href="#">Your Designer</a>.</p>
+            <p>&copy; 2025 AJ Stock. All Rights Reserved. </p>
         </div>
     </footer>
 
@@ -1313,32 +1480,48 @@
 
         
         // --- 2. Testimonial Carousel ---
-        // This is a simple, no-library carousel
         const testimonials = document.querySelectorAll('.testimonial-item');
         let currentTestimonial = 0;
         
         if (testimonials.length > 0) {
-            // Set initial state
-            testimonials[0].classList.add('active');
+            testimonials[0].classList.add('active'); // Set initial active
         }
 
         window.changeTestimonial = (direction) => {
-            // Hide current
             testimonials[currentTestimonial].classList.remove('active');
-            
-            // Calculate next
             currentTestimonial += direction;
             
-            // Loop back
             if (currentTestimonial < 0) {
                 currentTestimonial = testimonials.length - 1;
             } else if (currentTestimonial >= testimonials.length) {
                 currentTestimonial = 0;
             }
             
-            // Show next
             testimonials[currentTestimonial].classList.add('active');
         };
+
+        
+        // --- 3. Mobile Menu Toggle (NEW) ---
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileNav = document.querySelector('.mobile-nav-overlay');
+        const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            // Optional: Prevent body scrolling when menu is open
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
     });
     </script>
 
